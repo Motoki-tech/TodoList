@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "./_app";
+import { Box, Flex, Checkbox, Input, Button } from "@chakra-ui/react";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -26,44 +28,34 @@ const App = () => {
 
   return (
     <>
-      <h1>Todo App</h1>
-      <div className='form'>
-        <input type='text' name='todo' onChange={onChange} value={tmpTodo} />
-        <button onClick={addTodo}>Add</button>
-      </div>
-      <ul>
+      <Box maxWidth='8x1' margin='auto' p={5}>
+        <h1>Todo App</h1>
+        <div className='form'>
+          <Input
+            type='text'
+            name='todo'
+            onChange={onChange}
+            value={tmpTodo}
+            placeholder='New todo'
+          />
+          <Button onClick={addTodo}>Add</Button>
+        </div>
         {todos.map((todo: string, index: any) => {
           return (
-            <li key={index} className='card'>
+            <Flex pt={2} key={index} className='card'>
+              <Checkbox />
               {todo}
-              <button
+              <Button
                 onClick={() => {
                   deleteTodo(index);
                 }}
               >
                 Delete
-              </button>
-            </li>
+              </Button>
+            </Flex>
           );
         })}
-      </ul>
-      {/* <style>
-        {`
-        .card {
-            margin: 1rem;
-            padding: 1.5rem;
-            text-align: left;
-            color: inherit;
-            text-decoration: none;
-            border: 1px solid #eaeaea;
-            border-radius: 10px;
-            transition: color 0.15s ease, border-color 0.15s ease;
-            max-width: 300px;
-          }
-          
-        }
-        `}
-      </style> */}
+      </Box>
     </>
   );
 };
