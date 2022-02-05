@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./_app";
-import { Box, Flex, Checkbox, Input, Button } from "@chakra-ui/react";
+import { Box, Flex, Checkbox, Input, Button, Grid } from "@chakra-ui/react";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -43,8 +43,10 @@ const App = () => {
         {todos.map((todo: string, index: any) => {
           return (
             <Flex pt={2} key={index} className='card'>
-              <Checkbox />
-              {todo}
+              <Checkbox w='30%' />
+              <Grid pt={2} gap={5} w='100%' h='10'>
+                {todo}
+              </Grid>
               <Button
                 onClick={() => {
                   deleteTodo(index);
